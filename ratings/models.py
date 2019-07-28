@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.utils import timezone
+import numpy as np
 
 class Game(models.Model):
   name = models.CharField(max_length=200)
@@ -9,8 +11,13 @@ class Game(models.Model):
   platforms = models.CharField(max_length=100, null=True)
   igdbid = models.IntegerField()
 
+  def average_rating(self):
+    all_ratings = list(map(lambda x: x.rating, self.ratings.all()))
+    return round(np.mean(all_ratings), 1)
+
   def __str__(self):
     return f'id: {self.id} name: {self.name}'
+
 
 class Rating(models.Model):
   rating_choices = [(i, i) for i in range(1, 6)]
@@ -24,3 +31,14 @@ class Rating(models.Model):
 
   def __str__(self):
     return f'id: {self.id} game: {self.game} title: {self.title}'
+
+
+class Cluster(models.Model):
+  name = models.CharField(max_length=100)
+  users = models.ManyToManyField(User)
+
+  def __str__(self):
+    return f'id: {self.id} name: {self.name}'
+
+  def get_members(self):
+    return '\n'.join([user.username for user in self.users.all()])

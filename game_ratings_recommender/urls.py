@@ -22,5 +22,4 @@ urlpatterns = [
     path('token-auth/', obtain_jwt_token),
     path('video-games/', include('ratings.urls')),
     path('accounts/', include('accounts.urls')),
-    path('recommender/', include('recommender.urls')),
 ]
