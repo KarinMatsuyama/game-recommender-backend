@@ -654,6 +654,7 @@ class GameViewSet(viewsets.ModelViewSet):
 
 
 class RatingViewSet(viewsets.ModelViewSet):
+  permission_classes = [IsAuthenticatedOrReadOnly]
   serializer_class = RatingSerializer
   queryset = Rating.objects.all()
   filter_backends = [DjangoFilterBackend]
