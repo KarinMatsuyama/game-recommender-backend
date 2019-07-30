@@ -348,7 +348,7 @@ class GameViewSet(viewsets.ModelViewSet):
         "summary": "The biggest, most dynamic and most diverse open world ever created, Grand Theft Auto V blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story."
       }
     ]
-    game = random.choice(games)
+    game = [random.choice(games)]
     return Response(game)
 
   # Temporary game apis for dummy igdmAPI response
