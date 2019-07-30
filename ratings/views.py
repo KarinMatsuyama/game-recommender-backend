@@ -49,7 +49,7 @@ class GameViewSet(viewsets.ModelViewSet):
   # Temporary game apis for dummy igdmAPI response
   @action(methods=['get'], detail=False, url_path='game-by-id', url_name='game-by-id')
   def id_games(self, request, pk=None):
-    game = [
+    games = [
     {
         "id": 26845,
         "aggregated_rating": 93.3333333333333,
@@ -345,8 +345,12 @@ class GameViewSet(viewsets.ModelViewSet):
             19441
         ],
         "summary": "The biggest, most dynamic and most diverse open world ever created, Grand Theft Auto V blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story."
-    }
-]
+      }
+    ]
+    gameArr = []
+    for game in games:
+      if game[id] == pk:
+        gameArr.append(game)
     return Response(game)
 
   # Temporary game apis for dummy igdmAPI response
