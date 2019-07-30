@@ -8,6 +8,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 import numpy as np
+import random
 
 class GameViewSet(viewsets.ModelViewSet):
   permission_classes = [IsAuthenticatedOrReadOnly]
