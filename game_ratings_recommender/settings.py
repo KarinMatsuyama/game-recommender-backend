@@ -71,8 +71,6 @@ CORS_ALLOWED_ORIGINS = (
     'https://video-game-recommender.herokuapp.com',
 )
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 ROOT_URLCONF = 'game_ratings_recommender.urls'
 
 TEMPLATES = [
