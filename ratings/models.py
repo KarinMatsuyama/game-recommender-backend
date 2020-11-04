@@ -6,9 +6,9 @@ import numpy as np
 
 class Game(models.Model):
   name = models.CharField(max_length=200)
-  genres = models.CharField(max_length=100, null=True)
-  critic_score = models.IntegerField(null=True)
-  platforms = models.CharField(max_length=100, null=True)
+  genres = models.CharField(max_length=100, null=True, blank=True)
+  critic_score = models.IntegerField(null=True, blank=True)
+  platforms = models.CharField(max_length=100, null=True, blank=True)
   igdbid = models.IntegerField()
 
   def average_rating(self):
