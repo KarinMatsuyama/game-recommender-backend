@@ -1,7 +1,12 @@
 import django_heroku
 import os
 import datetime
+import environ
 
+env = environ.Env()
+environ.Env.read_env()
+CLIENT_ID = env('CLIENT_ID')
+CLIENT_SECRET = env('CLIENT_SECRET')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -65,6 +70,8 @@ CORS_ALLOWED_ORIGINS = (
     'http://localhost:3000',
     'https://video-game-recommender.herokuapp.com',
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'game_ratings_recommender.urls'
 
