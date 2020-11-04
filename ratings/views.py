@@ -8,6 +8,20 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 import numpy as np
+import requests
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+CLIENT_ID = env('CLIENT_ID')
+CLIENT_SECRET = env('CLIENT_SECRET')
+class TwitchViewSet(viewsets.ViewSet):
+  permission_classes = [IsAuthenticatedOrReadOnly]
+
+  def list(self, request, pk=None):
+    r = requests.post('https://id.twitch.tv/oauth2/token', params = {'client_id': CLIENT_ID, 'client_secret': CLIENT_SECRET, 'grant_type': 'client_credentials'})
+    content = r.content
+    return Response(content)
 
 class GameViewSet(viewsets.ModelViewSet):
   permission_classes = [IsAuthenticatedOrReadOnly]
